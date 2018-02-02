@@ -1,0 +1,207 @@
+$default-frontend-color: #548abb;
+//$default-frontend-color: #ec0000;
+$topnav-background-color: #e7e7e7;
+
+.main-container{
+    padding: 5px;
+}
+
+.chip-selected {
+    background-color: $default-frontend-color !important;
+    color: $topnav-background-color;
+}
+
+.chip-unselected {
+    background-color: $topnav-background-color !important;
+    color: $default-frontend-color;
+}
+
+h4.mat-header-adx {
+    margin: 0px;
+}
+
+.mat-dialog-title-adx {
+    margin: 0 0 0px;
+    display: block;
+}
+
+.mat-input-hint-wrapper {
+    background-color: $topnav-background-color !important;
+    color: $topnav-background-color !important;
+}
+
+.mat-card-content {
+    padding: 25px 25px 25px 25px;
+}
+
+.toolbar-icon {
+    padding: 0 14px;
+}
+/*
+.toolbar-spacer {
+    flex: 1 1 auto;
+}
+*/
+.toolbar-header {
+    background: $default-frontend-color;
+    color: #fff;
+    // position: fixed;
+    // top: 0;
+    // left: 0;
+    // z-index: 5;
+    // width: 100%  !important;
+}
+
+.mat-grid-tile .mat-figure {
+    justify-content: left !important;
+}
+
+.field-full-width {
+    width: 100%;
+}
+
+.card-full-width {
+    height: 95%;
+    width: 95%;
+}
+
+.zoombutton-spacer {
+    flex: 1 1 auto;
+}
+
+.mat-dialog-container {
+    padding: 0px !important;
+    overflow: hidden !important;
+    border-radius: 5px !important;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    //padding: 0px !important;
+}
+
+
+.mat-card-audaxys {
+    background-color: $default-frontend-color !important;
+    color: #fff;
+    padding: 5px 15px !important;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.mat-card {
+    padding: 0 !important;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+
+.mat-dialog-title-adx {
+    margin: 0px !important;
+    min-height: 10% !important;
+}
+
+.mat-dialog-content-adx {
+    margin: 5px !important;
+}
+
+.mat-dialog-actions-adx {
+    margin: 5px !important;
+    padding: 24px !important;
+}
+
+.sidebar-submenu {
+    color: $default-frontend-color !important;
+    padding: 0px 20px;
+    display: block;
+}
+
+.mat-list-item.sidebar-list-item {
+    color: $default-frontend-color !important;
+    background-color: $topnav-background-color;
+}
+
+.mat-sidenav {
+    background-color: $topnav-background-color;
+}
+
+.fab-button-green {
+    background-color: #5cb85c !important;
+}
+
+
+@media screen and (max-width: 992px) {
+    .mat-sidenav {
+        top: 54px;
+        left: 0px;
+    }
+}
+// LOGIN
+:host {
+    display: block;
+}
+
+.login-page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: auto;
+    background: $default-frontend-color;
+    text-align: center;
+    color: #fff;
+    padding: 3em;
+    .col-lg-4 {
+        padding: 0;
+    }
+    .input-lg {
+        height: 46px;
+        padding: 10px 16px;
+        font-size: 18px;
+        line-height: 1.3333333;
+        border-radius: 0;
+    }
+    .input-underline {
+        background: 0 0;
+        border: none;
+        box-shadow: none;
+        border-bottom: 2px solid rgba(255, 255, 255, .5);
+        color: #FFF;
+        border-radius: 0;
+    }
+    .input-underline:focus {
+        border-bottom: 2px solid #fff;
+        box-shadow: none;
+    }
+    .rounded-btn {
+        -webkit-border-radius: 50px;
+        border-radius: 50px;
+        color: rgba(255, 255, 255, 0.8);
+        background: $default-frontend-color;
+        border: 2px solid rgba(255, 255, 255, 0.8);
+        font-size: 18px;
+        line-height: 40px;
+        padding: 0 25px;
+    }
+    .rounded-btn:hover, .rounded-btn:focus, .rounded-btn:active, .rounded-btn:visited {
+        color: rgba(255, 255, 255, 1);
+        border: 2px solid rgba(255, 255, 255, 1);
+        outline: none;
+    }
+
+    h1 {
+        font-weight: 300;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-size: 36px;
+        small {
+            color: rgba(255, 255, 255, 0.7);
+        }
+    }
+}

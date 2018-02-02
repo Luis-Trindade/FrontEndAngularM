@@ -1,0 +1,5 @@
+<app-header (toggleEvent)="snav.toggle()"></app-header>
+<mat-sidenav-container fullscreen class="teste">
+    <mat-sidenav #snav mode="{{ navMode }}" opened="true" ><app-sidebar></app-sidebar></mat-sidenav>
+    <mat-sidenav-content class="main-container"><router-outlet></router-outlet></mat-sidenav-content>
+</mat-sidenav-container>

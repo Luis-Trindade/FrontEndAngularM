@@ -1,0 +1,73 @@
+<div [@routerTransition] fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="10px">
+    <app-page-header fxFlex="0 0 auto" [heading]="'Clientes'" [icon]="'people'"></app-page-header>
+    <mat-card fxFlex fxFlexFill>
+        <mat-card-header fxLayout="row" fxLayoutAlign="start center" class="mat-card-audaxys" >
+            <h4 class="mat-title mat-header-adx" >{{ 'Clientes' | translate }}</h4>
+            <span fxFlex></span>
+            <button type="button" mat-icon-button class="color-green mat-small" (click)="openClienteDialog()">
+                <mat-icon class="mat-icon-size">mode_edit</mat-icon>
+            </button>
+        </mat-card-header>
+        <!-- /.panel-heading -->
+        <mat-card-content>
+            <div fxLayout fxLayout.xs="column" fxLayoutAlign="start" fxLayoutGap="10px">
+                <div fxFlex="0 0 auto">
+                    <mat-icon fxHide.xs>search</mat-icon>
+                    <mat-form-field>
+                        <input type="text" matInput size="50" placeholder="Filtro" [(ngModel)]="filtroSearch" (ngModelChange)="loadListaClientes()">
+                    </mat-form-field>
+                </div>
+                <div fxFlex="0 0 auto">
+                    <mat-icon fxHide.xs>list</mat-icon>
+                    <mat-form-field>
+                        <mat-select id="restricao" name="restricao" [(ngModel)]="restricaoselected" (ngModelChange)="loadListaClientes()">
+                            <mat-option *ngFor="let r of restricao" value="{{ r.codigo }}">{{r.codigo}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <mat-table #table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">
+                <!-- Código -->
+                <ng-container matColumnDef="clinum" >
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'Código' | translate }} </mat-header-cell>
+                    <mat-cell *matCellDef="let clientes"> {{clientes.clinum}} </mat-cell>
+                </ng-container>
+
+                <!-- Nome -->
+                <ng-container matColumnDef="clinom">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'Nome' | translate }} </mat-header-cell>
+                    <mat-cell *matCellDef="let clientes"> {{clientes.clinom}} </mat-cell>
+                </ng-container>
+
+                <!-- Email -->
+                <ng-container matColumnDef="clitlx">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'Email' | translate }} </mat-header-cell>
+                    <mat-cell *matCellDef="let clientes"> {{clientes.clitlx}} </mat-cell>
+                </ng-container>
+
+                <!-- Telefone -->
+                <ng-container matColumnDef="clitel">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'Telefone' | translate }} </mat-header-cell>
+                    <mat-cell *matCellDef="let clientes"> {{clientes.clitel}} </mat-cell>
+                </ng-container>
+
+                <!-- NIF -->
+                <ng-container matColumnDef="clinfis">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'NIF' | translate }} </mat-header-cell>
+                    <mat-cell *matCellDef="let clientes"> {{clientes.clinfis}} </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="loadPaginaCliente(row)"></mat-row>
+            </mat-table>
+            <mat-paginator #clientesPaginator
+                           [length]="this.totalRecords"
+                           [pageIndex]="0"
+                           [pageSize]="25"
+                           [pageSizeOptions]="[5, 10, 25, 100]">
+            </mat-paginator>
+            <!-- /.table-responsive -->
+        </mat-card-content>
+        <!-- /.panel-body -->
+    </mat-card>
+</div>

@@ -1,0 +1,27 @@
+<div [@routerTransition] fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10px">
+    <mat-chip-list fxFlex="0 0 auto">
+        <mat-chip class="chip-selected">
+            <mat-icon>slow_motion_video</mat-icon>
+            <a href="Javascript:void(0)" [routerLink]="['/dashboard']">Dashboard</a>
+        </mat-chip>
+    </mat-chip-list>
+    <mat-card fxFlex fxFlexFill>
+        <mat-card-header class="mat-card-audaxys">
+            <h4 class="mat-title mat-header-adx">{{ 'Volume de negócio' | translate }}</h4>
+        </mat-card-header>
+        <mat-card-content>
+            <div *ngIf="isDataAvailable">
+                <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+                </canvas>
+            </div>
+        </mat-card-content>
+    </mat-card>
+    <mat-card fxFlex fxFlexFill>
+        <mat-card-header class="mat-card-audaxys">
+            <h4 class="mat-title mat-header-adx">{{ 'Condições Climáticas' | translate }}</h4>
+        </mat-card-header>
+        <mat-card-content>
+            <weather-widget [settings]="settings"></weather-widget>
+        </mat-card-content>
+    </mat-card>
+</div>

@@ -1,0 +1,159 @@
+<div [@routerTransition] fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10px">
+    <app-page-header fxFlex="0 0 auto" [heading]="'Simulação'" [icon]="'equalizer'"></app-page-header>
+    <mat-card fxFlex fxFlexFill>
+        <mat-card-header class="mat-card-audaxys">
+            <h4 class="mat-title mat-header-adx">{{ 'Simulador' | translate }}</h4>
+        </mat-card-header>
+        <mat-card-content>
+            <form novalidate (ngSubmit)="fazSimulacao()" #simul_form="ngForm" name="simul_form" id="simul_form" >
+                <!-- linha 1 -->
+                <div fxLayout fxLayout.xs="column" fxLayoutAlign="space-between center">
+                    <label fxFlex="24%" fxHide.xs>{{ 'Data Início' | translate }}</label>
+                    <mat-form-field fxFlex="24%">
+                        <mat-placeholder fxHide fxShow.xs>{{ 'Data Início' | translate }}</mat-placeholder>
+                        <input matInput [matDatepicker]="picker" id="cto2dat" name="cto2dat" [(ngModel)]="simul.cto2dat">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                    <label fxFlex="24%" fxHide.xs>{{ 'Valor' | translate }}</label>
+                    <mat-form-field fxFlex="24%">
+                        <mat-placeholder fxHide fxShow.xs>{{ 'Valor' | translate }}</mat-placeholder>
+                        <input matInput type="number" step="0.01" min="0.00" id="ctotcon" name="ctotcon" value="{{ simul.ctotcon }}" required [(ngModel)]="simul.ctotcon"/>
+                    </mat-form-field>
+                </div>
+                <!-- linha 2 -->
+                <div fxLayout fxLayout.xs="column" fxLayoutAlign="space-between center">
+                    <label fxFlex="24%" fxHide.xs>{{ 'Prazo' | translate }}</label>
+                    <mat-form-field fxFlex="24%">
+                        <mat-placeholder fxHide fxShow.xs>{{ 'Prazo' | translate }}</mat-placeholder>
+                        <input matInput type="number" min="1" id="ctopraz" name="ctopraz" value="{{ simul.ctopraz }}" required (change)="preencheGrupoRendasAuto()" [(ngModel)]="simul.ctopraz"/>
+                    </mat-form-field>
+                    <label fxFlex="24%" fxHide.xs>{{ 'Período' | translate }}</label>
+                    <mat-form-field fxFlex="24%">
+                        <mat-placeholder fxHide fxShow.xs>{{ 'Período' | translate }}</mat-placeholder>
+                        <input matInput type="number" min="1" max="12" id="ctoper" name="ctoper" value="{{ simul.ctoper }}" required (change)="preencheGrupoRendasAuto()" [(ngModel)]="simul.ctoper"/>
+                    </mat-form-field>
+                </div>
+                <!-- linha 3 -->
+                <div fxLayout fxLayout.xs="column" fxLayoutAlign="space-between center">
+                    <label fxFlex="24%" fxHide.xs>{{ 'A/P' | translate }}</label>
+                    <mat-radio-group fxFlex="24%" name="ctoap" [(ngModel)]="simul.ctoap">
+                        <mat-radio-button id="ctoap1" name="ctoap"  value="A" checked><b>{{ 'Antecipado' | translate }}</b></mat-radio-button>
+                        <mat-radio-button id="ctoap2" name="ctoap" value="P" ><b>{{ 'Postecipado' | translate }}</b></mat-radio-button>
+                    </mat-radio-group>
+                    <label fxFlex="24%" fxHide.xs>{{ 'IVA' | translate }}</label>
+                    <mat-form-field fxFlex="24%">
+                        <mat-select id="ctoiva" name="ctoiva" placeholder="Iva" [(ngModel)]="simul.ctoiva">
+                            <mat-option *ngFor="let i of iva" value="{{ i.codigo }}">{{i.descricao | translate}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <!-- linha 4 -->
+                <div fxLayout fxLayout.xs="column" fxLayoutAlign="space-between center">
+                    <label fxFlex="24%" fxHide.xs>{{ 'Data 1ª renda' | translate }}</label>
+                    <mat-form-field fxFlex="24%">
+                        <mat-placeholder fxHide fxShow.xs>{{ 'Data 1ª renda' | translate }}</mat-placeholder>
+                        <input matInput [matDatepicker]="picker2" id="cto1ren" name="cto1ren" [(ngModel)]="simul.cto1ren">
+                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                        <mat-datepicker #picker2></mat-datepicker>
+                    </mat-form-field>
+                    <label fxFlex="24%" fxHide.xs>{{ 'Juros Diferidos' | translate }}</label>
+                    <mat-form-field fxFlex="24%">
+                        <mat-select id="ctojurdif" name="ctojurdif" [(ngModel)]="simul.ctojurdif">
+                            <mat-option value="C" selected >{{ 'Calcula' | translate }}</mat-option>
+                            <mat-option value="S" >{{ 'Impõe Valor' | translate }}</mat-option>
+                            <mat-option value="N" >{{ 'Não tem' | translate }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <!-- linha 5 -->
+                <div fxLayout fxLayout.xs="column" fxLayoutAlign="space-between center">
+                    <label fxFlex="24%" fxHide.xs>{{ 'Dado' | translate }}</label>
+                    <mat-form-field fxFlex="24%">
+                        <mat-select id="ctodado" name="ctodado" [(ngModel)]="simul.ctodado">
+                            <mat-option value="T" selected >{{ 'Taxa' | translate }}</mat-option>
+                            <mat-option value="R" >{{ 'Rendas' | translate }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <label fxFlex="24%" fxHide.xs>{{ 'Valor Juros Diferidos' | translate }}</label>
+                    <mat-form-field fxFlex="24%">
+                        <mat-placeholder fxHide fxShow.xs>{{ 'Valor Juros Diferidos' | translate }}</mat-placeholder>
+                        <input matInput type="number" step="0.01" min="0.00" id="ctovaljurdif" name="ctovaljurdif" value="0.00" [disabled]="'C' == simul.ctojurdif || 'N' == simul.ctojurdif" [(ngModel)]="simul.ctovaljurdif"/>
+                    </mat-form-field>
+                </div>
+                <!-- linha 6 -->
+                <div fxLayout fxLayout.xs="column" fxLayoutAlign="space-between center">
+                    <label fxFlex="24%" fxHide.xs>{{ 'Taxa' | translate }}</label>
+                    <mat-form-field fxFlex="24%">
+                        <mat-placeholder fxHide fxShow.xs>{{ 'Taxa' | translate }}</mat-placeholder>
+                        <input matInput type="number" step="0.0001" class="form-control" id="ctotxim" value="" name="ctotxim" [(ngModel)]="simul.ctotxim" [disabled]="'R' == simul.ctodado"/>
+                    </mat-form-field>
+                    <div fxFlex="24%" fxHide.xs></div><!-- por causa do layoutgap tenho de definir td -->
+                    <div fxFlex="24%" fxHide.xs></div><!-- por causa do layoutgap tenho de definir td -->
+                </div>
+                <!-- linha 7 -->
+                <div fxLayout fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutGap="10px">
+                    <mat-card fxFlex="74%">
+                        <mat-card-header><b>{{ 'Grupos de Rendas' | translate }}</b></mat-card-header>
+                        <mat-card-content>
+                            <div fxLayout fxLayout.xs="column" fxLayoutAlign="space-between center" >
+                                <label fxFlex="32%" fxHide.xs>Quantidade</label>
+                                <label fxFlex="32%" fxHide.xs>Valor</label>
+                                <label fxFlex="32%" fxHide.xs>Factor</label>
+                            </div>
+                            <div fxLayout fxLayout.xs="column" fxLayoutAlign="space-between center" >
+                                <mat-form-field fxFlex="32%">
+                                    <mat-placeholder fxHide fxShow.xs>{{ 'Quantidade Grupo 1' | translate }}</mat-placeholder>
+                                    <input matInput type="number" id="qtd1" name="qtd1" min="1" value="" [(ngModel)]="simul.gruporendas[0].quantidade"/>
+                                </mat-form-field>
+                                <mat-form-field fxFlex="32%" >
+                                    <mat-placeholder fxHide fxShow.xs>{{ 'Valor Grupo 1' | translate }}</mat-placeholder>
+                                    <input matInput type="number" step="0.01" min="0.00" id="valor1" name="valor1" value="" [(ngModel)]="simul.gruporendas[0].valor"/>
+                                </mat-form-field>
+                                <mat-form-field fxFlex="32%" >
+                                    <mat-placeholder fxHide fxShow.xs>{{ 'Factor Grupo 1' | translate }}</mat-placeholder>
+                                    <input matInput type="number" step="0.01" min="0.00" id="factor1" name="factor1" value="" [(ngModel)]="simul.gruporendas[0].factor"/>
+                                </mat-form-field>
+                            </div>
+                            <div fxLayout fxLayout.xs="column" fxLayoutAlign="space-between center" >
+                                <mat-form-field fxFlex="32%" >
+                                    <mat-placeholder fxHide fxShow.xs>{{ 'Quantidade Grupo 2' | translate }}</mat-placeholder>
+                                    <input matInput type="number" id="qtd2" name="qtd2" min="1" value="" [(ngModel)]="simul.gruporendas[1].quantidade"/>
+                                </mat-form-field>
+                                <mat-form-field fxFlex="32%" >
+                                    <mat-placeholder fxHide fxShow.xs>{{ 'Valor Grupo 2' | translate }}</mat-placeholder>
+                                    <input matInput type="number" step="0.01" min="0.00" id="valor2" name="valor2" value="" [(ngModel)]="simul.gruporendas[1].valor"/>
+                                </mat-form-field>
+                                <mat-form-field fxFlex="32%" >
+                                    <mat-placeholder fxHide fxShow.xs>{{ 'Factor Grupo 2' | translate }}</mat-placeholder>
+                                    <input matInput type="number" step="0.01" min="0.00" id="factor2" name="factor2" value="" [(ngModel)]="simul.gruporendas[1].factor"/>
+                                </mat-form-field>
+                            </div>
+                            <div fxLayout fxLayout.xs="column" fxLayoutAlign="space-between center" >
+                                <mat-form-field fxFlex="32%" >
+                                    <mat-placeholder fxHide fxShow.xs>{{ 'Quantidade Grupo 3' | translate }}</mat-placeholder>
+                                    <input matInput type="number" id="qtd3" name="qtd3" min="1" value="" [(ngModel)]="simul.gruporendas[2].quantidade"/>
+                                </mat-form-field>
+                                <mat-form-field fxFlex="32%" >
+                                    <mat-placeholder fxHide fxShow.xs>{{ 'Valor Grupo 3' | translate }}</mat-placeholder>
+                                    <input matInput type="number" step="0.01" min="0.00" id="valor3" name="valor3" value="" [(ngModel)]="simul.gruporendas[2].valor"/>
+                                </mat-form-field>
+                                <mat-form-field fxFlex="32%" >
+                                    <mat-placeholder fxHide fxShow.xs>{{ 'Factor Grupo 3' | translate }}</mat-placeholder>
+                                    <input matInput type="number" step="0.01" min="0.00" id="factor3" name="factor3" value="" [(ngModel)]="simul.gruporendas[2].factor"/>
+                                </mat-form-field>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                    <div fxFlex="9%">
+                        <div fxLayout="column" fxLayoutAlign="center stretch">
+                            <button type="submit" id="calc_button" mat-raised-button color="primary" [disabled]="simul_form.invalid" >{{ 'Calcula' | translate }}</button>
+                            <button id="diagcash_button" mat-raised-button color="primary" (click)="openCashflow()">{{ 'Cashflow' | translate }}</button>
+                            <button id="diagchart_button" mat-raised-button color="primary" (click)="openChartLines()">{{ 'Gráfico CF' | translate }}</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

@@ -1,0 +1,132 @@
+<div [@routerTransition] fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="5px">
+    <app-page-header fxFlex="1%" [heading]="'Clientes'" [secondheading]="cliente.clinum" [icon]="'people'" [headingUrl]="'/clientes'"></app-page-header>
+    <div fxFlex fxFlexFill>
+        <div fxLayout fxLayout.xs="column" fxLayoutAlign="space-between stretch">
+            <mat-card fxFlex="49%">
+                <mat-card-header fxLayout="row" fxLayoutAlign="start center" class="mat-card-audaxys">
+                    <h4 class="mat-title mat-header-adx">{{ 'Cliente' | translate }}</h4>
+                    <span fxFlex></span>
+                    <button type="button" mat-icon-button class="color-green mat-small" (click)="openClienteDialog()">
+                        <mat-icon class="mat-icon-size">mode_edit</mat-icon>
+                    </button>
+                    <button type="button" mat-icon-button class="mat-small" [matMenuTriggerFor]="menuCliente">
+                        <mat-icon class="mat-icon-size-2">more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menuCliente="matMenu" [overlapTrigger]="false">
+                        <button mat-menu-item><mat-icon>favorite_border</mat-icon>{{ 'Opção 1' | translate }}</button>
+                        <button mat-menu-item><mat-icon>date_range</mat-icon>{{ 'Etc' | translate }}</button>
+                        <button mat-menu-item (click)="deleteCliente()"><mat-icon>delete</mat-icon>{{ 'Delete' | translate }}</button>
+                    </mat-menu>
+                    <!--</h4>-->
+                </mat-card-header>
+                <mat-card-content>
+                    <!-- linha 1 -->
+                    <div fxLayout fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutGap="20px">
+                        <div fxFlex="15%">
+                            <p><strong>{{ 'Nome' | translate }}</strong></p>
+                        </div>
+                        <div fxFlex="85%">
+                            <p>{{ cliente.clinom }}</p>
+                        </div>
+                    </div>
+                    <!-- linha 2 -->
+                    <div fxLayout fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutGap="20px">
+                        <div fxFlex="15%">
+                            <p><strong>{{ 'Web' | translate }}</strong></p>
+                        </div>
+                        <div fxFlex="85%">
+                            <a href="{{ cliente.cliwww }}">{{ cliente.cliwww }}</a>
+                        </div>
+                    </div>
+                    <!-- linha 3 -->
+                    <div fxLayout fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutGap="20px">
+                        <div fxFlex="15%">
+                            <p><strong>{{ 'Email' | translate }}</strong></p>
+                        </div>
+                        <div fxFlex="85%">
+                            <a href="{{ cliente.clitlx }}">{{ cliente.clitlx }}</a>
+                        </div>
+                    </div>
+                    <!-- linha 4 -->
+                    <div fxLayout fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutGap="20px">
+                        <div fxFlex="15%">
+                            <p><strong>{{ 'Telefone' | translate }}</strong></p>
+                        </div>
+                        <div fxFlex="85%">
+                            <p>{{ cliente.clitel }}</p>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+            <mat-card fxFlex="49%">
+                <mat-card-header class="mat-card-audaxys">
+                    <h4 class="mat-title mat-header-adx">{{ 'Localização' | translate }}</h4>
+                </mat-card-header>
+                <mat-card-content>
+                    <div fxLayout fxLayout.xs="column" fxLayoutAlign="start stretch" class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item"
+                                width="500px"
+                                height="250px"
+                                frameborder="0" style="..."
+                                [src]='mapURL()' allowfullscreen>
+                        </iframe>
+                    </div>
+
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div fxLayout fxLayout.xs="column" fxLayoutAlign="space-between stretch">
+            <mat-card fxFlex="49%">
+                <mat-card-header class="mat-card-audaxys">
+                    <h4 class="mat-title mat-header-adx">{{ 'Contratos' | translate }}</h4>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-table #table [dataSource]="dataSource">
+                        <!-- Código -->
+                        <ng-container matColumnDef="ctonum" >
+                            <mat-header-cell *matHeaderCellDef> {{ 'Número' | translate }} </mat-header-cell>
+                            <mat-cell *matCellDef="let contratos"> {{contratos.ctonum}} </mat-cell>
+                        </ng-container>
+
+                        <!-- Nome -->
+                        <ng-container matColumnDef="cto2dat">
+                            <mat-header-cell *matHeaderCellDef> {{ 'Início' | translate }} </mat-header-cell>
+                            <mat-cell *matCellDef="let contratos"> {{contratos.cto2dat}} </mat-cell>
+                        </ng-container>
+
+                        <!-- Email -->
+                        <ng-container matColumnDef="ctopraz">
+                            <mat-header-cell *matHeaderCellDef> {{ 'Prazo' | translate }} </mat-header-cell>
+                            <mat-cell *matCellDef="let contratos"> {{contratos.ctopraz}} </mat-cell>
+                        </ng-container>
+
+                        <!-- Telefone -->
+                        <ng-container matColumnDef="ctotcon">
+                            <mat-header-cell *matHeaderCellDef> {{ 'Vincendo' | translate }} </mat-header-cell>
+                            <mat-cell *matCellDef="let contratos"> {{contratos.ctotcon}} </mat-cell>
+                        </ng-container>
+
+                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                    </mat-table>
+                    <mat-paginator #contratosPaginator
+                                   [length]="this.totalRecordContratos"
+                                   [pageIndex]="0"
+                                   [pageSize]="5">
+                    </mat-paginator>
+                </mat-card-content>
+            </mat-card>
+            <mat-card fxFlex="49%">
+                <mat-card-header class="mat-card-audaxys">
+                    <h4 class="mat-title mat-header-adx">{{ 'Pipeline por tipo de proposta' | translate }}</h4>
+                </mat-card-header>
+                <mat-card-content>
+                    <div *ngIf="isDataAvailable">
+                        <canvas baseChart height="180px" [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+                        </canvas>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>

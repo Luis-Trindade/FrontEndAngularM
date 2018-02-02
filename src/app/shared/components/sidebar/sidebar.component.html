@@ -1,0 +1,64 @@
+<mat-nav-list>
+    <a mat-list-item></a>
+    <a mat-list-item class="sidebar-list-item" routerLink="/dashboard" [routerLinkActive]="['router-link-active']">
+        <mat-icon matListIcon>slow_motion_video</mat-icon>{{'Dashboard' | translate}}
+    </a>
+    <a mat-list-item class="sidebar-list-item" (click)="showSubMenu()">
+        <mat-icon matListIcon>build</mat-icon>{{ 'Tools' | translate }}
+        <mat-icon *ngIf="!subMenuActive">chevron_left</mat-icon>
+        <mat-icon *ngIf="subMenuActive">expand_more</mat-icon>
+    </a>
+    <mat-nav-list [ngClass]="{'submenu-hidden': !subMenuActive, 'submenu-visible': subMenuActive }">
+        <a mat-list-item class="sidebar-list-item" href="javascript:void(0)" class="sidebar-submenu">
+            {{ 'Tool 1' | translate }}
+        </a>
+        <a mat-list-item class="sidebar-list-item" [routerLink]="['/simul']" [routerLinkActive]="['router-link-active']" class="sidebar-submenu">
+            {{ 'Simulação Rendas' | translate }}
+        </a>
+        <a mat-list-item class="sidebar-list-item" [routerLink]="['/simulresc']" [routerLinkActive]="['router-link-active']" class="sidebar-submenu">
+            {{ 'Simulação Rescisão' | translate }}
+        </a>
+    </mat-nav-list>
+    <a mat-list-item class="sidebar-list-item" [routerLink]="['/clientes']"  [routerLinkActive]="['router-link-active']">
+        <mat-icon matListIcon>people</mat-icon>{{ 'Clientes' | translate }}
+    </a>
+    <a mat-list-item class="sidebar-list-item" href="javascript:void(0)">
+        <mat-icon matListIcon>settings</mat-icon>{{ 'Config' | translate }}
+    </a>
+
+</mat-nav-list>
+<!--
+<ul class="list-group">
+        <li>
+            <a class="li-nohover" href="#"><i class="fa fa-fw"></i></a>
+        </li>
+        <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'Dashboard' | translate }}
+        </a>
+        <div class="nested-menu">
+            <a class="list-group-item" (click)="addExpandClass('pages')">
+                <span><i class="fa fa-wrench"></i>&nbsp;{{ 'Tools' | translate }}</span><span class="fa arrow"></span>
+            </a>
+            <li class="nested" [class.expand]="showMenu === 'pages'">
+                <ul class="submenu">
+                    <li>
+                        <a href="javascript:void(0)"><span>{{ 'Tool 1' | translate }}</span></a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/simul']" [routerLinkActive]="['router-link-active']"><span>{{ 'Simulação Rendas' | translate }}</span></a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/simulresc']" [routerLinkActive]="['router-link-active']"><span>{{ 'Simulação Rescisão' | translate }}</span></a>
+                    </li>
+                </ul>
+            </li>
+        </div>
+        <a [routerLink]="['/clientes']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-users fa-fw"></i>&nbsp;{{ 'Clientes' | translate }}
+        </a>
+        <a href="javascript:void(0)" class="list-group-item"><i class="fa fa-cogs fa-fw"></i>&nbsp;{{ 'Config' | translate }}</a>
+
+    </ul>
+-->
+
+

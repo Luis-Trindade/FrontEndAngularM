@@ -1,0 +1,125 @@
+<div mat-dialog-title class="mat-card-audaxys mat-dialog-title-adx">
+    <h4 mat-dialog-title class="mat-dialog-title-adx">{{ operacao }} {{ 'Cliente' | translate }}</h4>
+</div>
+<div mat-dialog-content class="mat-dialog-content-adx">
+    <form novalidate (ngSubmit)="RegModCliente(login_form)" #login_form="ngForm" name="modal_form" id="modal_form" >
+        <!-- linha 1 -->
+        <div fxLayout fxLayout.xs="column" fxLayoutAlign="space-between center">
+            <label fxFlex="24%" fxHide.xs><strong>{{ 'Código' | translate }}</strong></label>
+            <mat-form-field fxFlex="24%">
+                <mat-placeholder fxHide fxShow.xs>{{ 'Código' | translate }}</mat-placeholder>
+                <input type="text" matInput id="clinum" name="clinum" value="{{ cliente.clinum }}" disabled [(ngModel)]="cliente.clinum"/>
+            </mat-form-field>
+            <span fxFlex="24%" fxHide.xs></span>
+            <mat-radio-group fxFlex="24%" name="clitcli" [(ngModel)]="cliente.clitcli">
+                <mat-radio-button value="E" [checked]="'E' == cliente.clitcli"><b>{{ 'Empresa' | translate }}</b></mat-radio-button>
+                <mat-radio-button value="P" [checked]="'P' == cliente.clitcli"><b>{{ 'Particular' | translate }}</b></mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <!-- linha 2 -->
+        <div fxLayout fxLayout.xs="column" fxLayoutAlign="space-between center">
+            <label fxFlex="24%" fxHide.xs><strong>{{ 'Nacionalidade' | translate }}</strong></label>
+            <mat-form-field fxFlex="24%">
+                <mat-placeholder fxHide fxShow.xs>{{ 'Nacionalidade' | translate }}</mat-placeholder>
+                <mat-select id="nacionalidade" name="clipais" [(ngModel)]="cliente.clipais" (selected)="p.codigo ==  cliente.clipais">
+                    <mat-option *ngFor="let p of pais" value="{{ p.codigo }}" >{{p.nomepais}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <label fxFlex="24%" fxHide.xs><strong>{{ 'NIF' | translate }}</strong></label>
+            <mat-form-field fxFlex="24%">
+                <mat-placeholder fxHide fxShow.xs>{{ 'NIF' | translate }}</mat-placeholder>
+                <input type="text" matInput id="nif" name="clinfis" validaNif="clinfis" #clinfis="ngModel" value="{{ cliente.clinfis }}" [(ngModel)]="cliente.clinfis" required/>
+                <mat-error *ngIf="clinfis.errors?.required && clinfis.touched">{{ 'Campo obrigatório' | translate }}</mat-error>
+                <mat-error *ngIf="clinfis.errors && clinfis.touched">{{ 'NIF tem de ter um formato válido' | translate }}</mat-error>
+            </mat-form-field>
+        </div>
+        <!-- linha 3 -->
+        <div fxLayout fxLayout.xs="column" fxLayoutAlign="space-between center">
+            <label fxFlex="24%" fxHide.xs><strong>{{ 'Nome' | translate }}</strong></label>
+            <mat-form-field fxFlex="75%">
+                <mat-placeholder fxHide fxShow.xs>{{ 'Nome' | translate }}</mat-placeholder>
+                <input type="text" matInput #clinom="ngModel" id="nome" name="clinom" value="{{ cliente.clinom }}" [(ngModel)]="cliente.clinom" required/>
+                <mat-error>{{ 'Campo obrigatório' | translate }}</mat-error>
+            </mat-form-field>
+        </div>
+        <!-- linha 4 -->
+        <div fxLayout fxLayout.xs="column" fxLayoutAlign="space-between center">
+            <label fxFlex="24%" fxHide.xs><strong>{{ 'Morada' | translate }}</strong></label>
+            <mat-form-field fxFlex="75%">
+                <mat-placeholder fxHide fxShow.xs>{{ 'Morada' | translate }}</mat-placeholder>
+                <input type="text" matInput id="morada" name="climor" value="{{ cliente.climor }}" [(ngModel)]="cliente.climor"/>
+            </mat-form-field>
+        </div>
+        <!-- linha 5 -->
+        <div fxLayout fxLayout.xs="column" fxLayoutAlign="space-between center">
+            <span fxFlex="24%" fxHide.xs></span>
+            <mat-form-field fxFlex="75%">
+                <mat-placeholder fxHide fxShow.xs>{{ 'Morada continuação' | translate }}</mat-placeholder>
+                <input type="text" matInput id="morada2" name="climor2" value="{{ cliente.climor2 }}" [(ngModel)]="cliente.climor2"/>
+            </mat-form-field>
+        </div>
+        <!-- linha 6 -->
+        <div fxLayout fxLayout.xs="column" fxLayoutAlign="space-between center">
+            <div fxFlex="24%"></div>
+            <mat-form-field fxFlex="24%">
+                <mat-placeholder fxHide fxShow.xs>{{ 'Código Postal' | translate }}</mat-placeholder>
+                <input type="text" matInput id="codpostal1" name="clicop" value="{{ cliente.clicop }}" [(ngModel)]="cliente.clicop"/>
+            </mat-form-field>
+            <mat-form-field fxFlex="24%">
+                <mat-placeholder fxHide fxShow.xs>{{ 'Sufixo' | translate }}</mat-placeholder>
+                <input type="text" matInput id="codpostal2" name="clicop2" value="{{ cliente.clicop2 }}" [(ngModel)]="cliente.clicop2"/>
+            </mat-form-field>
+            <mat-form-field fxFlex="24%">
+                <mat-placeholder fxHide fxShow.xs>{{ 'Localidade' | translate }}</mat-placeholder>
+                <input type="text" matInput id="localidade" name="cliloc" value="{{ cliente.cliloc }}" [(ngModel)]="cliente.cliloc"/>
+            </mat-form-field>
+        </div>
+
+        <!-- linha 7 -->
+        <div fxLayout fxLayout.xs="column" fxLayoutAlign="space-between center">
+            <label fxFlex="24%" fxHide.xs><strong>{{ 'Email' | translate }}</strong></label>
+            <mat-form-field fxFlex="75%">
+                <mat-placeholder fxHide fxShow.xs>{{ 'Email' | translate }}</mat-placeholder>
+                <input type="email" matInput id="email" name="clitlx" #clitlx="ngModel" email value="{{ cliente.clitlx }}" [(ngModel)]="cliente.clitlx"/>
+                <mat-error>{{ 'Email tem de ter um formato válido' | translate }}</mat-error>
+            </mat-form-field>
+        </div>
+        <!-- linha 8 -->
+        <div fxLayout fxLayout.xs="column" fxLayoutAlign="space-between center">
+            <label fxFlex="24%" fxHide.xs><strong>{{ 'Website' | translate }}</strong></label>
+            <mat-form-field fxFlex="75%">
+                <mat-placeholder fxHide fxShow.xs>{{ 'Website' | translate }}</mat-placeholder>
+                <input type="text" matInput [disabled]="'P' == cliente.clitcli" class="form-control" id="website" #cliwww="ngModel" pattern="https?://.+" name="cliwww" value="{{ cliente.cliwww }}" [(ngModel)]="cliente.cliwww"/>
+                <mat-error>{{ 'Website tem de ter um formato válido' | translate }}</mat-error>
+            </mat-form-field>
+        </div>
+        <!-- linha 9 -->
+        <div fxLayout fxLayout.xs="column" fxLayoutAlign="space-between center">
+            <label fxFlex="24%" fxHide.xs><strong>{{ 'Telefone' | translate }}</strong></label>
+            <mat-form-field fxFlex="24%">
+                <mat-placeholder fxHide fxShow.xs>{{ 'Telefone' | translate }}</mat-placeholder>
+                <input type="text"  matInput id="telefone" name="clitel" value="{{ cliente.clitel }}" [(ngModel)]="cliente.clitel"/>
+            </mat-form-field>
+            <label fxFlex="24%" fxHide.xs><strong>{{ 'Nascido a' | translate }}</strong></label>
+            <mat-form-field fxFlex="24%">
+                <mat-placeholder fxHide fxShow.xs>{{ 'Nascido a' | translate }}</mat-placeholder>
+                <input matInput [disabled]="cliente.clitcli=='E'" [matDatepicker]="picker" id="datanascimento" name="datanascimento" [(ngModel)]="cliente.restocliente.datanascimento">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </div>
+
+        <!-- linha 10 -->
+        <div fxLayout fxLayout.xs="column" fxLayoutAlign="space-between center" fxLayoutAlign.xs="start center">
+            <div fxFlex="24%"></div>
+            <mat-checkbox fxFlex="24%" value="S" name="cliehsucursal" [checked]="'S' == cliente.cliehsucursal" [(ngModel)]="cliente.cliehsucursal">{{ 'Sucursal' | translate }}</mat-checkbox>
+            <mat-checkbox fxFlex="24%" value="S" name="cliivacaixa" [checked]="'S' == cliente.cliivacaixa" [(ngModel)]="cliente.cliivacaixa">{{ 'Iva caixa' | translate }}</mat-checkbox>
+            <mat-checkbox fxFlex="24%" value="S" name="clibanco" [checked]="'S' == cliente.clibanco" [(ngModel)]="cliente.clibanco">{{ 'Cliente é Banco' | translate }}</mat-checkbox>
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions fxLayout="row" fxLayoutAlign="end center" class="mat-dialog-actions-adx">
+    <!--<span class="toolbar-spacer"></span>-->
+    <button type="button" mat-raised-button id="modal_submit" color="primary" [disabled]="login_form.invalid" (click)="RegModCliente()">{{ 'Guardar' | translate }}</button>
+    <button type="button" mat-raised-button color="warn" (click)="onNoClick()">{{ 'Cancelar' | translate }}</button>
+</div>

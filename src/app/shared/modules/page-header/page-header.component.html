@@ -1,0 +1,14 @@
+<mat-chip-list>
+        <mat-chip class="chip-unselected">
+            <mat-icon>slow_motion_video</mat-icon>
+            <a href="Javascript:void(0)" [routerLink]="['/dashboard']">Dashboard</a>
+        </mat-chip>
+        <div *ngIf="secondheading;then doisfilhos else umfilho"></div>
+        <ng-template #umfilho>
+            <mat-chip selected="true" class="chip-selected"><mat-icon>{{icon}}</mat-icon> {{heading}}</mat-chip>
+        </ng-template>
+        <ng-template #doisfilhos>
+            <mat-chip selected="false" class="chip-unselected"><mat-icon>{{icon}}</mat-icon><a href="Javascript:void(0)" [routerLink]="[headingUrl]">{{heading}}</a></mat-chip>
+            <mat-chip *ngIf="secondheading" selected="true" class="chip-selected"><mat-icon>{{icon}}</mat-icon> {{ secondheading }}</mat-chip>
+        </ng-template>
+</mat-chip-list>

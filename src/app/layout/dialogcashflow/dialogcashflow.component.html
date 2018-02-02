@@ -1,0 +1,55 @@
+    <div mat-dialog-title class="mat-card-audaxys mat-dialog-title-adx">
+        <h4 class="mat-dialog-title-adx">{{ 'Cashflow de rendas' | translate }}</h4>
+    </div>
+    <div mat-dialog-content class="modal-body mat-dialog-content-adx">
+        <mat-table #table [dataSource]="dataSource">
+            <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+
+            <!-- datainiper Column -->
+            <ng-container matColumnDef="datainiper">
+                <mat-header-cell *matHeaderCellDef>{{ 'Data' | translate }}</mat-header-cell>
+                <mat-cell *matCellDef="let cashflow"> {{ cashflow.datainiper | date: 'dd-MM-yyyy' }} </mat-cell>
+            </ng-container>
+
+            <!-- capinicio Column -->
+            <ng-container matColumnDef="capinicio">
+                <mat-header-cell *matHeaderCellDef>{{ 'Capital Inicial' | translate }}</mat-header-cell>
+                <mat-cell *matCellDef="let cashflow"> {{cashflow.capinicio}} </mat-cell>
+            </ng-container>
+
+            <!-- Valor Column -->
+            <ng-container matColumnDef="valor">
+                <mat-header-cell *matHeaderCellDef>{{ 'Valor' | translate }}</mat-header-cell>
+                <mat-cell *matCellDef="let cashflow"> {{cashflow.valor}} </mat-cell>
+            </ng-container>
+
+            <!-- Capital Column -->
+            <ng-container matColumnDef="capital">
+                <mat-header-cell *matHeaderCellDef>{{ 'Capital' | translate }}</mat-header-cell>
+                <mat-cell *matCellDef="let cashflow"> {{cashflow.capital}} </mat-cell>
+            </ng-container>
+
+            <!-- Juro Column -->
+            <ng-container matColumnDef="juro">
+                <mat-header-cell *matHeaderCellDef>{{ 'Juro' | translate }}</mat-header-cell>
+                <mat-cell *matCellDef="let cashflow"> {{cashflow.juro}} </mat-cell>
+            </ng-container>
+
+            <!-- Imposto Column -->
+            <ng-container matColumnDef="imposto">
+                <mat-header-cell *matHeaderCellDef>{{ 'Imposto' | translate }}</mat-header-cell>
+                <mat-cell *matCellDef="let cashflow"> {{cashflow.imposto}} </mat-cell>
+            </ng-container>
+
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+
+    </div>
+    <div mat-dialog-actions class="modal-footer mat-dialog-actions-adx">
+        <span fxFlex></span>
+        <button type="button" mat-raised-button color="warn" (click)="onNoClick()">Fechar</button>
+    </div>
+

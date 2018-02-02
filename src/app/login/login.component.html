@@ -1,0 +1,26 @@
+<div class="login-page" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" [@routerTransition]>
+    <!--<img src="assets/images/santanderlogo.jpg">-->
+    <img src="assets/images/logo.png">
+    <h1 class="mat-heading">Faça o seu Login</h1>
+    <form novalidate #login_form="ngForm" name="login_form" id="login_form" >
+        <div>
+            <mat-form-field>
+                <mat-placeholder>Utilizador</mat-placeholder>
+                <input matInput class="input-underline input-lg" ngModel id="username" #userName="ngModel" name="name" autocomplete="username" (keyup.enter)="onSubmit(login_form)">
+                <mat-error *ngIf="userName.errors?.required && userName.touched">Utilizador é obrigatório</mat-error>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field>
+                <mat-placeholder>Password</mat-placeholder>
+                <input matInput type="password" class="input-underline input-lg" ngModel id="password"  #passWord="ngModel" name="password" required autocomplete="current-password" (keyup.enter)="onSubmit(login_form)">
+                <mat-error *ngIf="passWord.errors?.required && passWord.touched">Password obrigatória</mat-error>
+            </mat-form-field>
+        </div>
+        <div *ngIf="onSubmitError" class="error">
+            Autenticação Inválida!
+        </div>
+    </form>
+    <button mat-raised-button type="button" color="primary" [disabled]="login_form.invalid" id="login_submit" (click)="onSubmit(login_form)" (keyup.enter)="onSubmit(login_form)"> Log in </button>
+</div>
+

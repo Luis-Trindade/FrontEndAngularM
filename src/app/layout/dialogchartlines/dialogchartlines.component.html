@@ -1,0 +1,12 @@
+<div mat-dialog-title class="mat-card-audaxys mat-dialog-title-adx">
+    <h4 class="mat-dialog-title-adx">{{ 'Cashflow gráfico' | translate }}</h4>
+</div>
+<div mat-dialog-content class="modal-body mat-dialog-content-adx">
+   <canvas baseChart height="130" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+   </canvas>
+</div>
+<div mat-dialog-actions class="modal-footer mat-dialog-actions-adx">
+    <span fxFlex></span>
+    <button type="button" mat-raised-button color="warn" (click)="onNoClick()">Fechar</button>
+</div>
+

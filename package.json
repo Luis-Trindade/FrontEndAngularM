@@ -1,0 +1,48 @@
+{
+  "name": "AudaxysWebFrontend",
+  "version": "0.0.1",
+  "license": "ADX",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve --ec true",
+    "startProd": "ng serve --prod",
+    "build": "ng build --prod",
+    "buildDev": "ng build --dev",
+    "gitbuild": "ng build --prod --base /start-angular/SB-Admin-BS4-Angular-4/master/dist/",
+    "test": "ng test",
+    "lint": "ng lint"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "^5.1.2",
+    "@angular/cdk": "^5.0.2",
+    "@angular/common": "^5.1.2",
+    "@angular/compiler": "^5.1.2",
+    "@angular/core": "^5.1.2",
+    "@angular/flex-layout": "^2.0.0-beta.12",
+    "@angular/forms": "^5.1.2",
+    "@angular/http": "^5.1.2",
+    "@angular/material": "^5.0.2",
+    "@angular/platform-browser": "^5.1.2",
+    "@angular/platform-browser-dynamic": "^5.1.2",
+    "@angular/router": "^5.1.2",
+    "@ngx-translate/core": "^9.0.0",
+    "@ngx-translate/http-loader": "^2.0.0",
+    "angular-weather-widget": "^1.2.4",
+    "core-js": "^2.4.1",
+    "font-awesome": "^4.7.0",
+    "ng2-charts": "^1.6.0",
+    "rxjs": "^5.1.0",
+    "zone.js": "^0.8.4"
+  },
+  "devDependencies": {
+    "@angular/cli": "1.6.7",
+    "@angular/compiler-cli": "^5.1.2",
+    "@angular/language-service": "^5.1.2",
+    "@types/node": "~6.0.60",
+    "codelyzer": "~4.0.2",
+    "ts-node": "~3.0.4",
+    "tslint": "~5.3.2",
+    "typescript": "~2.5.3"
+  }
+}

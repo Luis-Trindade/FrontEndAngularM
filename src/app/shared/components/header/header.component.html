@@ -1,0 +1,57 @@
+<mat-toolbar class="toolbar-header">
+    <mat-toolbar-row fxLayout="row" fxLayoutAlign="start center">
+        <button mat-icon-button (click)="toggleSidebar()"  fxHide.gt-sm><mat-icon>menu</mat-icon></button>
+        <!--<a href="/" fxHide.xs><img src="assets/images/santanderlogo.jpg"></a>-->
+        <a href="/"><img src="assets/images/logo.png"></a>
+
+        <span fxFlex></span>
+
+        <button mat-icon-button [matMenuTriggerFor]="menuLang"><mat-icon class="toolbar-icon">translate</mat-icon></button>
+        <mat-menu #menuLang="matMenu" [overlapTrigger]="false">
+            <button mat-menu-item (click)="changeLang('pt')">Portugues</button>
+            <button mat-menu-item (click)="changeLang('en')">English</button>
+            <button mat-menu-item (click)="changeLang('fr')">French</button>
+            <button mat-menu-item (click)="changeLang('ur')">Urdu</button>
+        </mat-menu>
+
+        <button mat-icon-button [matMenuTriggerFor]="menuSettings"><mat-icon class="toolbar-icon">person</mat-icon></button>
+        <mat-menu #menuSettings="matMenu" [overlapTrigger]="false">
+            <button mat-menu-item><mat-icon class="toolbar-icon">person</mat-icon> {{ 'Profile' | translate }}</button>
+            <button mat-menu-item><mat-icon class="toolbar-icon">email</mat-icon> {{ 'Inbox' | translate }}</button>
+            <button mat-menu-item><mat-icon class="toolbar-icon">settings</mat-icon> {{ 'Settings' | translate }}</button>
+            <button mat-menu-item [routerLink]="['/login']" (click)="onLoggedout()"><mat-icon class="toolbar-icon">power_settings_new</mat-icon> {{ 'Log out' | translate }}</button>
+        </mat-menu>
+    </mat-toolbar-row>
+</mat-toolbar>
+<!--
+<div class="pos-f-t fixed-top header">
+    <nav class="navbar navbar-inverse  navbar-toggleable-md">
+        <button class="navbar-toggler navbar-toggler-right" (click)="toggleSidebar()">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="/"><img src="assets/images/santanderlogo.jpg"></a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto mt-2 mt-md-0">
+                <li class="nav-item dropdown">
+                    <button mat-button [matMenuTriggerFor]="menuLang"><i class="fa fa-language"></i> {{ 'language' | translate }} <b class="caret"></b></button>
+                    <mat-menu #menuLang="matMenu" [overlapTrigger]="false">
+                        <button mat-menu-item (click)="changeLang('pt')">Portugues</button>
+                        <button mat-menu-item (click)="changeLang('en')">English</button>
+                        <button mat-menu-item (click)="changeLang('fr')">French</button>
+                        <button mat-menu-item (click)="changeLang('ur')">Urdu</button>
+                    </mat-menu>
+                </li>
+                <li class="nav-item dropdown">
+                    <button mat-icon-button [matMenuTriggerFor]="menuSettings"><i class="fa fa-user"></i><b class="caret"></b></button>
+                    <mat-menu #menuSettings="matMenu" [overlapTrigger]="false">
+                        <button mat-menu-item><i class="fa fa-fw fa-user"></i> {{ 'Profile' | translate }}</button>
+                        <button mat-menu-item><i class="fa fa-fw fa-envelope"></i> {{ 'Inbox' | translate }}</button>
+                        <button mat-menu-item><i class="fa fa-fw fa-gear"></i> {{ 'Settings' | translate }}</button>
+                        <button mat-menu-item [routerLink]="['/login']" (click)="onLoggedout()"><i class="fa fa-fw fa-power-off"></i> {{ 'Log out' | translate }}</button>
+                    </mat-menu>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+-->

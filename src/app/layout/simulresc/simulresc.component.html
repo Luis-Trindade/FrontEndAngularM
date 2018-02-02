@@ -1,0 +1,104 @@
+<div [@routerTransition] fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10px">
+    <app-page-header fxFlex="0 0 auto" [heading]="'Rescisão'" [icon]="'equalizer'"></app-page-header>
+    <mat-card fxFlex fxFlexFill>
+        <mat-card-header class="mat-card-audaxys">
+            <h4 class="mat-title mat-header-adx">{{ 'Simulação Rescisão' | translate }}</h4>
+        </mat-card-header>
+        <mat-card-content>
+            <form novalidate (ngSubmit)="fazSimulacaoRescisao()" #simulresc_form="ngForm" name="simulresc_form" id="simulresc_form" >
+                <!-- linha 1 -->
+                <div fxLayout fxLayout.xs="column" fxLayoutAlign="space-between center">
+                    <label fxFlex="24%" fxHide.xs>{{ 'Contrato' | translate }}</label>
+                    <mat-form-field fxFlex="24%">
+                        <mat-placeholder fxHide fxShow.xs>{{ 'Contrato' | translate }}</mat-placeholder>
+                        <input matInput type="number" class="text-right" id="contrato" name="contrato" value="{{ simul.contrato }}" required [(ngModel)]="simul.contrato">
+                        <mat-icon matSuffix (click)="openZoomContrato()">search</mat-icon>
+                    </mat-form-field>
+                    <label fxFlex="24%" fxHide.xs>{{ 'Data rescisão' | translate }}</label>
+                    <mat-form-field fxFlex="24%">
+                        <mat-placeholder fxHide fxShow.xs>{{ 'Data rescisão' | translate }}</mat-placeholder>
+                        <input matInput [matDatepicker]="picker" id="data" name="data" [(ngModel)]="simul.data">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <!-- linha 2 -->
+                <div fxLayout fxLayout.xs="column" fxLayoutAlign="space-between center">
+                    <label fxFlex="24%" fxHide.xs>{{ 'Produto' | translate }}</label>
+                    <mat-form-field fxFlex="75%">
+                        <mat-placeholder fxHide fxShow.xs>{{ 'Produto' | translate }}</mat-placeholder>
+                        <input matInput disabled type="string" id="ctotipo" name="ctotipo" value="{{ simul.ctotipo }}" required [(ngModel)]="simul.ctotipo"/>
+                    </mat-form-field>
+                </div>
+                <!-- linha 3 -->
+                <div fxLayout fxLayout.xs="column" fxLayoutAlign="space-between center">
+                    <label fxFlex="24%" fxHide.xs>{{ 'Cliente' | translate }}</label>
+                    <mat-form-field fxFlex="75%">
+                        <mat-placeholder fxHide fxShow.xs>{{ 'Cliente' | translate }}</mat-placeholder>
+                        <input matInput disabled type="string" id="cliente" name="cliente" value="{{ simul.cliente }}" required [(ngModel)]="simul.cliente"/>
+                    </mat-form-field>
+                </div>
+                <!-- linha 4 -->
+                <div fxLayout fxLayout.xs="column" fxLayoutAlign="space-between center">
+                    <label fxFlex="24%" fxHide.xs>{{ 'Valor Rescisão' | translate }}</label>
+                    <mat-form-field fxFlex="24%">
+                        <mat-placeholder fxHide fxShow.xs>{{ 'Valor Rescisão' | translate }}</mat-placeholder>
+                        <input matInput disabled type="number" class="text-right" id="rescisaocomiva" name="rescisaocomiva" value="{{ simul.rescisaocomiva }}" required [(ngModel)]="simul.rescisaocomiva"/>
+                    </mat-form-field>
+                    <label fxFlex="24%" fxHide.xs>{{ 'Próxima renda' | translate }}</label>
+                    <mat-form-field fxFlex="24%">
+                        <mat-placeholder fxHide fxShow.xs>{{ 'Próxima renda' | translate }}</mat-placeholder>
+                        <input matInput disabled [matDatepicker]="picker2" id="proximarenda" name="proximarenda" [(ngModel)]="simul.proximarenda">
+                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                        <mat-datepicker touchUi="true" #picker2></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <!-- linha 5 -->
+                <div fxLayout fxLayout.xs="column" fxLayoutAlign="space-between center">
+                    <label fxFlex="24%" fxHide.xs>{{ 'Débitos atraso' | translate }}</label>
+                    <mat-form-field fxFlex="24%">
+                        <mat-placeholder fxHide fxShow.xs>{{ 'Débitos atraso' | translate }}</mat-placeholder>
+                        <input matInput disabled type="number" class="text-right" id="debitosatraso" name="debitosatraso" value="{{ simul.debitosatraso }}" required [(ngModel)]="simul.debitosatraso"/>
+                    </mat-form-field>
+                    <label fxFlex="24%" fxHide.xs>{{ 'Juros Mora' | translate }}</label>
+                    <mat-form-field fxFlex="24%">
+                        <mat-placeholder fxHide fxShow.xs>{{ 'Juros Mora' | translate }}</mat-placeholder>
+                        <input matInput disabled type="number" class="text-right" id="jurosmora" name="jurosmora" value="{{ simul.jurosmora }}" required [(ngModel)]="simul.jurosmora"/>
+                    </mat-form-field>
+                </div>
+                <!-- linha 6 -->
+                <div fxLayout fxLayout.xs="column" fxLayoutAlign="space-between center">
+                    <label fxFlex="24%" fxHide.xs>{{ 'Seguro' | translate }}</label>
+                    <mat-form-field fxFlex="24%">
+                        <mat-placeholder fxHide fxShow.xs>{{ 'Seguro' | translate }}</mat-placeholder>
+                        <input matInput disabled type="number" class="text-right" id="valorseguro" name="valorseguro" value="{{ simul.valorseguro }}" required [(ngModel)]="simul.valorseguro"/>
+                    </mat-form-field>
+                    <label fxFlex="24%" fxHide.xs>{{ 'Despesas' | translate }}</label>
+                    <mat-form-field fxFlex="24%">
+                        <mat-placeholder fxHide fxShow.xs>{{ 'Despesas' | translate }}</mat-placeholder>
+                        <input matInput disabled type="number" class="text-right" id="despesasciva" name="despesasciva" value="{{ simul.despesasciva }}" required [(ngModel)]="simul.despesasciva"/>
+                    </mat-form-field>
+                </div>
+                <!-- linha 7 -->
+                <div fxLayout fxLayout.xs="column" fxLayoutAlign="space-between center">
+                    <label fxFlex="24%" fxHide.xs>{{ 'Caução' | translate }}</label>
+                    <mat-form-field fxFlex="75%">
+                        <mat-placeholder fxHide fxShow.xs>{{ 'Caução' | translate }}</mat-placeholder>
+                        <input matInput disabled type="number" class="form-control text-right" id="caucao" name="caucao" value="{{ simul.caucao }}" required [(ngModel)]="simul.caucao"/>
+                    </mat-form-field>
+                </div>
+                <!-- linha 8 -->
+                <div fxLayout fxLayout.xs="column" fxLayoutAlign="space-between center">
+                    <label fxFlex="24%" fxHide.xs>{{ 'Total a pagar' | translate }}</label>
+                    <mat-form-field fxFlex="75%">
+                        <mat-placeholder fxHide fxShow.xs>{{ 'Total a pagar' | translate }}</mat-placeholder>
+                        <input matInput disabled type="number" class="form-control text-right" id="valortotal" name="valortotal" value="{{ simul.valortotal }}" required [(ngModel)]="simul.valortotal"/>
+                    </mat-form-field>
+                </div>
+                <div fxLayout fxLayout.xs="column" fxLayoutAlign="end center" fxLayoutGap="1%">
+                    <button type="submit" mat-raised-button color="primary" id="calc_button" [disabled]="simulresc_form.invalid">{{ 'Calcula' | translate }}</button>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

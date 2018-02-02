@@ -1,0 +1,11 @@
+<div mat-dialog-title class="mat-card-audaxys mat-dialog-title-adx">
+    <h4 mat-dialog-title class="mat-dialog-title-adx" id="errmsg-header">{{ Header | translate }}</h4>
+</div>
+<div mat-dialog-content class="mat-dialog-content-adx">
+    <p id="errmsg-usermsg">{{ Mensagem | translate }}</p>
+</div>
+<div mat-dialog-actions fxLayout="row" fxLayoutAlign="end center" class="mat-dialog-actions-adx">
+    <span fxFlex></span>
+    <button type="button" mat-raised-button id="errmsg-button" color="primary" (click)="clickedOK()">{{ 'Sim' | translate }}</button>
+    <button type="button" mat-raised-button id="errmsg-cancel" color="warn" (click)="clickedCancel()">{{ 'Não' | translate }}</button>
+</div>
