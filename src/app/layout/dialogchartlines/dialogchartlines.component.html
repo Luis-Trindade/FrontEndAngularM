@@ -2,7 +2,7 @@
     <h4 class="mat-dialog-title-adx">{{ 'Cashflow gráfico' | translate }}</h4>
 </div>
 <div mat-dialog-content class="modal-body mat-dialog-content-adx">
-   <canvas baseChart height="130" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+   <canvas baseChart height="130" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType">
    </canvas>
 </div>
 <div mat-dialog-actions class="modal-footer mat-dialog-actions-adx">

@@ -2,7 +2,7 @@
     <h4 mat-dialog-title class="mat-dialog-title-adx">{{ operacao }} {{ 'Cliente' | translate }}</h4>
 </div>
 <div mat-dialog-content class="mat-dialog-content-adx">
-    <form novalidate (ngSubmit)="RegModCliente(login_form)" #login_form="ngForm" name="modal_form" id="modal_form" >
+    <form novalidate (ngSubmit)="RegModCliente()" #login_form="ngForm" name="modal_form" id="modal_form" >
         <!-- linha 1 -->
         <div fxLayout fxLayout.xs="column" fxLayoutAlign="space-between center">
             <label fxFlex="24%" fxHide.xs><strong>{{ 'Código' | translate }}</strong></label>
@@ -21,8 +21,8 @@
             <label fxFlex="24%" fxHide.xs><strong>{{ 'Nacionalidade' | translate }}</strong></label>
             <mat-form-field fxFlex="24%">
                 <mat-placeholder fxHide fxShow.xs>{{ 'Nacionalidade' | translate }}</mat-placeholder>
-                <mat-select id="nacionalidade" name="clipais" [(ngModel)]="cliente.clipais" (selected)="p.codigo ==  cliente.clipais">
-                    <mat-option *ngFor="let p of pais" value="{{ p.codigo }}" >{{p.nomepais}}</mat-option>
+                <mat-select id="nacionalidade" name="clipais" [(ngModel)]="cliente.clipais">
+                    <mat-option *ngFor="let p of pais" [value]="p.codigo" >{{p.nomepais}}</mat-option>
                 </mat-select>
             </mat-form-field>
             <label fxFlex="24%" fxHide.xs><strong>{{ 'NIF' | translate }}</strong></label>

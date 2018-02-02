@@ -36,7 +36,7 @@ export class ClientesComponent implements AfterViewInit {
     totalRecords = 100;
     ordenacao = [];
     displayedColumns = [ 'clinum', 'clinom', 'clitlx', 'clitel', 'clinfis' ];
-    private dataSource: MatTableDataSource<Cliente>;
+    public dataSource: MatTableDataSource<Cliente>;
 
     errorHeader: string;
     errorMessage: string;

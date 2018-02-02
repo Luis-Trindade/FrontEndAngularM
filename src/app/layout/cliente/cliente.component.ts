@@ -40,7 +40,7 @@ export class ClienteComponent implements AfterViewInit, OnInit, OnDestroy {
     public doughnutChartType = 'doughnut';
     public isDataAvailable = false;
     displayedColumns = [ 'ctonum', 'cto2dat', 'ctopraz', 'ctotcon' ];
-    private dataSource: MatTableDataSource<Contrato>;
+    public dataSource: MatTableDataSource<Contrato>;
     // erros
     errorHeader: string;
     errorMessage: string;

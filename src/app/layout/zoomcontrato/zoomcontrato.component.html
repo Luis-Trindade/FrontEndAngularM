@@ -2,7 +2,7 @@
     <h4 class="mat-dialog-title-adx">{{ 'Consulta Contrato' | translate }}</h4>
 </div>
 <div mat-dialog-content class="mat-dialog-content-adx">
-    <form novalidate (ngSubmit)="ConsultaContrato(zoomcontrato)" #zoomcontrato="ngForm" name="modal_form" id="modal_form" >
+    <form novalidate #zoomcontrato="ngForm" name="modal_form" id="modal_form" >
         <!-- linha 1 -->
         <div fxLayout fxLayout.xs="column" fxLayoutAlign="space-between center">
             <label fxFlex="24%" fxHide.xs><strong>{{ 'Número' | translate }}</strong></label>
@@ -29,9 +29,9 @@
         <div fxLayout fxLayout.xs="column" fxLayoutAlign="space-between center">
             <label fxFlex="24%" fxHide.xs><strong>{{ 'Tipo Contrato' | translate }}</strong></label>
             <mat-form-field fxFlex="24%">
-                <mat-select id="ctotipo" name="ctotipo" [(ngModel)]="contrato.ctotipo" (ngModelChange)="updateDescricao($event)" (selected)="t.codigo ==  contrato.ctotipo">
+                <mat-select id="ctotipo" name="ctotipo" [(ngModel)]="contrato.ctotipo" (ngModelChange)="updateDescricao($event)">
                     <mat-option value=""></mat-option>
-                    <mat-option *ngFor="let t of tipocontra" value="{{ t.codigo }}" >{{t.codigo}}</mat-option>
+                    <mat-option *ngFor="let t of tipocontra" [value]="t.codigo" >{{t.codigo}}</mat-option>
                 </mat-select>
             </mat-form-field>
             <mat-form-field fxFlex="49%" fxHide.xs>

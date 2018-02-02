@@ -81,7 +81,7 @@
                     <h4 class="mat-title mat-header-adx">{{ 'Contratos' | translate }}</h4>
                 </mat-card-header>
                 <mat-card-content>
-                    <mat-table #table [dataSource]="dataSource">
+                    <mat-table #table [dataSource]="this.dataSource">
                         <!-- Código -->
                         <ng-container matColumnDef="ctonum" >
                             <mat-header-cell *matHeaderCellDef> {{ 'Número' | translate }} </mat-header-cell>
